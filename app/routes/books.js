@@ -15,7 +15,7 @@ export default (app) => {
 
   var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "./uploads/images/books");
+      cb(null, "./uploads/images/categories");
     },
     filename: (req, file, cb) => {
       cb(null, `${Date.now()}-${file.originalname}`);

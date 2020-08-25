@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import db from "./app/models";
 import books from "./app/routes/books.js";
+import categories from "./app/routes/categories.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/uploads", express.static("uploads"));
 db.sequelize.sync();
 
 books(app);
+categories(app);
 
 // simple routes
 app.get("/", (req, res) => {
