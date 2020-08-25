@@ -26,7 +26,6 @@ exports.create = async (req, res) => {
     views: 0,
     weight: req.body.weight,
     stock: req.body.stock,
-    status: "Published",
   });
 
   try {
@@ -52,8 +51,21 @@ exports.findOne = async (req, res) => {
 exports.update = async (req, res) => {
   const id = req.params.id;
 
+  const updateBooks = {
+    title: req.body.title,
+    slug: req.body.slug,
+    description: req.body.description,
+    author: req.body.author,
+    publisher: req.body.publisher,
+    cover: req.file.path,
+    price: req.body.price,
+    views: 0,
+    weight: req.body.weight,
+    stock: req.body.stock,
+  };
+
   try {
-    const books = Books.update(req.body, {
+    const books = Books.update(updateBooks, {
       where: { id: id },
     });
     if (!books) throw Error("gagal update data buku");

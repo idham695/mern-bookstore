@@ -1,4 +1,4 @@
-import books from "../controllers/BookController.js";
+import categories from "../controllers/CategoriesController";
 import multer from "multer";
 import { Router } from "express";
 
@@ -28,11 +28,11 @@ export default (app) => {
     limits: { fileSize: 1024 * 1024 * 10 },
   });
 
-  router.get("/", books.findAll);
-  router.post("/", upload.single("cover"), books.create);
-  router.get("/:id", books.findOne);
-  router.put("/:id", upload.single("cover"), books.update);
-  router.delete("/:id", books.delete);
+  router.get("/", categories.findAll);
+  router.get("/:id", categories.findOne);
+  router.post("/", upload.single("image"), categories.create);
+  router.put("/:id", upload.single("image"), categories.update);
+  router.delete("/:id", categories.delete);
 
-  app.use("/api/books", router);
+  app.use("/api/categories", router);
 };

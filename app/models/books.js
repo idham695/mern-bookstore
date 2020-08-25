@@ -17,6 +17,7 @@ export default (sequelize, Sequelize) => {
     },
     cover: {
       type: Sequelize.STRING,
+      allowNull: true,
     },
     price: {
       type: Sequelize.INTEGER,
@@ -31,7 +32,8 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
     },
     status: {
-      type: Sequelize.STRING,
+      type: Sequelize.ENUM("draft", "published"),
+      defaultValue: "published",
     },
   });
 

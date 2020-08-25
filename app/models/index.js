@@ -2,6 +2,7 @@ import dbConfig from "../config/db.js";
 import Sequelize from "sequelize";
 import db from "../config/db.js";
 import books from "./books.js";
+import categories from "./categories.js";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -21,5 +22,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.books = books(sequelize, Sequelize);
+db.categories = categories(sequelize, Sequelize);
 
 export default db;
