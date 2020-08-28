@@ -23,7 +23,10 @@ exports.findAll = async (req, res) => {
   const name = req.query.name;
   var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
   try {
-    const categories = await Categories.findAll({ where: condition });
+    const categories = await Categories.findAll({
+      where: condition,
+      include: ["books"],
+    });
     if (!categories) throw Error("Buku tidak ada");
     res.status(200).json(categories);
   } catch (error) {

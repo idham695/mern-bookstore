@@ -24,4 +24,10 @@ db.sequelize = sequelize;
 db.books = books(sequelize, Sequelize);
 db.categories = categories(sequelize, Sequelize);
 
+db.categories.hasMany(db.books, { as: "books" });
+db.books.belongsTo(db.categories, {
+  foreignKey: "categoryId",
+  as: "categories",
+});
+
 export default db;

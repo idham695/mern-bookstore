@@ -6,7 +6,10 @@ exports.findAll = async (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
   try {
-    const books = await Books.findAll({ where: condition });
+    const books = await Books.findAll({
+      where: condition,
+      include: ["categories"],
+    });
     if (!books) throw Error("Buku tidak ada");
     res.status(200).json(books);
   } catch (error) {
@@ -17,6 +20,7 @@ exports.findAll = async (req, res) => {
 exports.create = async (req, res) => {
   const newBooks = new Books({
     title: req.body.title,
+    categoryId: req.body.categoryId,
     slug: req.body.slug,
     description: req.body.description,
     author: req.body.author,
