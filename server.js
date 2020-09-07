@@ -4,6 +4,7 @@ import cors from "cors";
 import db from "./app/models";
 import books from "./app/routes/books.js";
 import categories from "./app/routes/categories.js";
+import users from "./app/routes/users";
 
 const app = express();
 
@@ -25,6 +26,7 @@ db.sequelize.sync();
 
 books(app);
 categories(app);
+users(app);
 
 // simple routes
 app.get("/", (req, res) => {
