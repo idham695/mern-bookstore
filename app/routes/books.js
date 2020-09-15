@@ -29,7 +29,7 @@ export default (app) => {
   });
 
   router.get("/", books.findAll);
-  router.post("/", upload.single("cover"), books.create);
+  router.post("/", books.create);
   router.get("/:id", books.findOne);
   router.put("/:id", upload.single("cover"), books.update);
   router.delete("/:id", books.delete);

@@ -25,11 +25,11 @@ exports.create = async (req, res) => {
     description: req.body.description,
     author: req.body.author,
     publisher: req.body.publisher,
-    cover: req.file.path,
+    cover: "http://localhost:5000/uploads/images/books/unavailable.jpg",
     price: req.body.price,
     views: 0,
-    weight: req.body.weight,
-    stock: req.body.stock,
+    weight: 1,
+    stock: 10,
   });
 
   try {

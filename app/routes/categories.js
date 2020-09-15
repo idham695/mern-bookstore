@@ -30,8 +30,8 @@ export default (app) => {
 
   router.get("/", categories.findAll);
   router.get("/:id", categories.findOne);
-  router.post("/", upload.single("image"), categories.create);
-  router.put("/:id", upload.single("image"), categories.update);
+  router.post("/", categories.create);
+  router.put("/:id", categories.update);
   router.delete("/:id", categories.delete);
 
   app.use("/api/categories", router);

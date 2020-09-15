@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
   const newCategories = new Categories({
     name: req.body.name,
     slug: req.body.slug,
-    image: req.file.path,
+    image: "http://localhost:5000/uploads/images/categories/unavailable.jpg",
   });
 
   try {
@@ -51,7 +51,7 @@ exports.update = async (req, res) => {
   const updateCategories = {
     name: req.body.name,
     slug: req.body.slug,
-    image: req.file.path,
+    image: "http://localhost:5000/uploads/images/categories/unavailable.jpg",
   };
 
   try {
