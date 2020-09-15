@@ -1,6 +1,7 @@
 import db from "../models";
 const Books = db.books;
 const Op = db.sequelize.Op;
+import Sequelize from "sequelize";
 
 exports.findAll = async (req, res) => {
   const title = req.query.title;
@@ -9,6 +10,19 @@ exports.findAll = async (req, res) => {
     const books = await Books.findAll({
       where: condition,
       include: ["categories"],
+    });
+    if (!books) throw Error("Buku tidak ada");
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+};
+
+exports.randomBooks = async (req, res) => {
+  try {
+    const books = await Books.findAll({
+      order: Sequelize.literal("random()"),
+      limit: 4,
     });
     if (!books) throw Error("Buku tidak ada");
     res.status(200).json(books);
